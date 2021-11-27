@@ -3,7 +3,7 @@ import keys
 import pandas as pd
 from time import sleep
 
-def get_crypto_rates(base_currency='USD', assets='BTC, ETH, XRP' ):
+def get_crypto_rates(base_currency='USD', assets='BTC, ETH, XRP' ): #* More rates can be added here
     url = 'https://api.nomics.com/v1/currencies/ticker'
 
     payload = {'key': keys.NOMICS_API_KEY, 'convert': base_currency, 'ids': assets, 'interval': 'id'}
@@ -47,13 +47,16 @@ while True:
     try:
         df = get_crypto_rates()
 
+        #! Make sure the currency has been added in the 'get_crypto_rates' function first.
         set_alert(df, 'BTC', 56000)
         set_alert(df, 'ETH', 10000.80)
-        set_alert(df, 'XRP', .870)
+        set_alert(df, 'XRP', .950)
+
+       # TODO: Add email and phone alerts
+        
     except Exception as e:
         print('Couldn\'t retrieve the data...Trying again.')
 
     loop += 1
     sleep(30)
 
-    
