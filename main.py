@@ -11,5 +11,8 @@ def get_crypto_rates(base_currency='USD', assets='BTC, ETH, XRP' ):
     data = response.json()
 
     crypto_currency, cypto_price,crypto_timespace = [], [], []
+    
+    for asset in data:
+        
 
     
