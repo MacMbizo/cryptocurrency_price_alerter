@@ -25,8 +25,17 @@ def get_crypto_rates(base_currency='USD', assets='BTC, ETH, XRP' ):
     }
 
     df = pd.DataFrame(raw_data)
-    print(df)
     return df
 
 
-get_crypto_rates('ZAR', 'DOT')
+def set_alert(dataframe, asset, alert_high_price):
+    crypto_value = float(dataframe[dataframe['assets'] == asset]['rates'].item())
+
+    details = f'{asset}: {crypto_value}, Target: {alert_high_price}'
+
+    if crypto_value >= alert_high_price:
+        print(details + ' << TARGET VALUE REACHED!!')
+
+    else:
+        print(details)
+    
