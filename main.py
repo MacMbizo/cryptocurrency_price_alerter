@@ -39,3 +39,21 @@ def set_alert(dataframe, asset, alert_high_price):
     else:
         print(details)
     
+#Alert While Loop
+loop = 0
+while True:
+    print(f'----------------------------({loop})----------------------------')
+
+    try:
+        df = get_crypto_rates()
+
+        set_alert(df, 'BTC', 56000)
+        set_alert(df, 'ETH', 10000.80)
+        set_alert(df, 'XRP', .870)
+    except Exception as e:
+        print('Couldn\'t retrieve the data...Trying again.')
+
+    loop += 1
+    sleep(30)
+
+    
